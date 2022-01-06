@@ -1,0 +1,65 @@
+#   %n :换行；
+#   %msg：日志信息
+#   %d：日志日期
+# logging.pattern.console="%d - %msg%n"
+# logging.file.path=/F:/cx/seted/java_windows/tomcat9/cxLog/SpringBootLog/sell/sell.log
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    #  1
+    password: 123456
+    #sell0
+    url: jdbc:mysql://localhost/sell?useSSL=false&autoReconnect=true&serverTimezone=GMT%2B8&characterEncoding=utf8&rewriteBatchedStatements=true
+  jpa:
+    show-sql: true
+  #用于返回前端json数据时不反回值为null的属性
+  #jackson:
+   # default-property-inclusion: non_null
+  freemarker:
+    allow-request-override: false
+    #Enable template caching.启用模板缓存。
+    cache: false
+    check-template-location: true
+    charset: utf-8
+    content-type: text/html
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    #设置面板后缀
+    suffix: .ftl
+    request-context-attribute: ctx
+  mvc:
+    static-path-pattern: /static/**
+
+#spring.freemarker.prefix=
+#spring.freemarker.request-context-attribute=
+#spring.freemarker.settings.*=
+#spring.freemarker.template-loader-path=classpath:/templates/ #comma-separated list
+#spring.freemarker.view-names= # whitelist of view names that can be resolved
+
+server:
+  servlet:
+   context-path: /sell
+  port: 80
+
+#wechat:
+  #例子：wxd898···，29df8a6···；
+  #mpAppId:
+   # mpAppSecret:
+thymeleaf:
+  prefix: classpath:/templates/  #prefix：指定模板所在的目录
+  check-template-location: true  #check-tempate-location: 检查模板路径是否存在
+  cache: false  #cache: 是否缓存，开发模式下设置为false，避免改了模板还要重启服务器，线上设置为true，可以提高性能。
+  #suffix:  .html
+  #encoding: UTF-8
+  #content-type: text/html
+  #mode: HTML5
+
+#配置打印sql语句执行的结果logging-level:后+的是导入的mapper包
+logging:
+  level:
+    com.imooc.sell.dataobject.mapper: trace
+mybatis:
+  mapper-locations:  classpath:mapper/*Mapper.xml
+

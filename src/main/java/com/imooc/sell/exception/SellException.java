@@ -1,0 +1,17 @@
+package com.imooc.sell.exception;
+
+import com.imooc.sell.enums.ResultEnums;
+
+public class SellException extends RuntimeException {
+    private Integer code;
+
+    public SellException(ResultEnums resultEnums) {
+        super(resultEnums.getMsg());
+        this.code=resultEnums.getCode();
+    }
+
+    public SellException(Integer code,String message) {
+        super(message);
+        this.code = code;
+    }
+}
